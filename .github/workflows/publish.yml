@@ -14,9 +14,9 @@ jobs:
       - name: Build & push
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           image: ${{ github.repository_owner }}/gitea-runner-windows
           tags: ${{ github.ref_name }}, latest
-          registry: docker.io
+          registry: ghcr.io
           buildArgs: SERVERCORE_VERSION="ltsc2022",RUNNER_VERSION="${{ github.ref_name }}"
